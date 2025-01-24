@@ -133,7 +133,6 @@ async def head_to_head_page(request: Request):
 
 def get_atp_matches_query(db, player1_id, player2_id):
     """Get matches from all ATP tables"""
-    from sqlalchemy import text, cast, BigInteger, desc
 
     # Convert player IDs to integer
     player1_id = int(player1_id)
