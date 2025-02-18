@@ -8,6 +8,7 @@ from routers import players
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse,JSONResponse
+from routers import rankings
 
 
 app = FastAPI(title="Tennis stats")
@@ -17,6 +18,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 db_dependency = Annotated[Session, Depends(get_db)]
 
 app.include_router(players.router, prefix="/players", tags=["players"])
+app.include_router(rankings.router, prefix="/rankings", tags=["rankings"])
 
 @app.get("/", status_code=status.HTTP_200_OK)
 async def home(request: Request, db: db_dependency):
