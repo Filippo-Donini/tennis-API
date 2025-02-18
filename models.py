@@ -390,6 +390,29 @@ class TemporalTable(Base):
     is_quarter_start = Column(Boolean)
     is_year_end = Column(Boolean)
     is_year_start = Column(Boolean)
+
+
+class AtpRankingsCurrent(Base):
+    __tablename__ = 'atp_rankings_current'
+
+    ID = Column(Integer, primary_key=True)
+    rank = Column(String)
+    name = Column(String)
+    age = Column(String)
+    country = Column(String)
+    points = Column(String)
+    ranking_date = Column(Date)
+
+class WtaRankingsCurrent(Base):
+    __tablename__ = 'wta_rankings_current'
+
+    ID = Column(Integer, primary_key=True)
+    rank = Column(String)
+    name = Column(String)
+    age = Column(String)
+    country = Column(String)
+    points = Column(String)
+    ranking_date = Column(Date)
     
     
     
