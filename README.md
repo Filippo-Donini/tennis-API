@@ -13,24 +13,6 @@ A web application built with FastAPI that provides tennis statistics, head-to-he
 The application is deployed on AWS EC2 and can be accessed at:
 http://44.201.186.157:8000
 
+## API Endpoints
 
-## Project Structure
-
-'''
-- tennis-stats/
-├── main.py              # FastAPI application entry point
-├── models.py            # SQLAlchemy models
-├── database.py          # Database configuration
-├── fetching_script.py   # Rankings update script
-├── requirements.txt     # Python dependencies
-├── Dockerfile          
-├── routers/
-│   ├── players.py      # Player-related routes
-│   └── rankings.py     # Rankings-related routes
-└── templates/          # Jinja2 HTML templates
-    ├── base.html
-    ├── home.html
-    ├── rankings.html
-    └── head_to_head.html
-
-'''
+to access the API endpoints visit the swagger documentation at: http://44.201.186.157:8000/docs
