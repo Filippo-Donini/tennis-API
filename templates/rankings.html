@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tour }} Rankings{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-6 flex justify-between items-center">
+        <h1 class="text-3xl font-bold">{{ tour }} Rankings</h1>
+        <div class="flex space-x-4">
+            <a href="/rankings?tour=ATP" 
+               class="px-4 py-2 rounded-lg {% if tour == 'ATP' %}bg-blue-600 text-white{% else %}bg-gray-200{% endif %}">
+                ATP
+            </a>
+            <a href="/rankings?tour=WTA"
+               class="px-4 py-2 rounded-lg {% if tour == 'WTA' %}bg-blue-600 text-white{% else %}bg-gray-200{% endif %}">
+                WTA
+            </a>
+        </div>
+    </div>
+
+    {% if latest_date %}
+    <div class="text-gray-600 mb-4">
+        Last updated: {{ latest_date.strftime('%Y-%m-%d') if latest_date is not string else latest_date }}
+    </div>
+    {% endif %}
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Player</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Country</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Points</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for ranking in rankings %}
+                <tr>
+                    <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ ranking.rank }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-900">{{ ranking.name }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">{{ ranking.age }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">{{ ranking.country }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-500">{{ "{:,}".format(ranking.points|int) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 flex items-center justify-between">
+        <div class="text-sm text-gray-700">
+            Showing {{ showing_start }} to {{ showing_end }} of {{ "{:,}".format(total_count) }}
+        </div>
+        
+        <div class="flex space-x-2">
+            {% if has_prev %}
+            <a href="/rankings?tour={{ tour }}&page={{ current_page-1 }}"
+               class="px-4 py-2 border rounded text-blue-600 hover:bg-blue-50">
+                Previous
+            </a>
+            {% endif %}
+            
+            <span class="px-4 py-2 text-gray-700">
+                Page {{ current_page }} of {{ total_pages }}
+            </span>
+            
+            {% if has_next %}
+            <a href="/rankings?tour={{ tour }}&page={{ current_page+1 }}"
+               class="px-4 py-2 border rounded text-blue-600 hover:bg-blue-50">
+                Next
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
