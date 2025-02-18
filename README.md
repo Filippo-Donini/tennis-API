@@ -16,6 +16,7 @@ http://44.201.186.157:8000
 
 ## Project Structure
 
+'''
 - tennis-stats/
 ├── main.py              # FastAPI application entry point
 ├── models.py            # SQLAlchemy models
@@ -31,3 +32,5 @@ http://44.201.186.157:8000
     ├── home.html
     ├── rankings.html
     └── head_to_head.html
+
+'''
