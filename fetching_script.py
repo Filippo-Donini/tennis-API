@@ -83,11 +83,12 @@ data=[]
 for i in all_list:
     line=parse_with_split(str(i))
     data.append(line)
-    print(line)
+    #print(line)                               #debug
 
 df=pd.DataFrame(data)
 
 df['ranking_date']=datetime.datetime.now().strftime('%Y-%m-%d')
+df['ID']=df["ranking_date"].astype(str) + df["rank"].astype(str)
 
 load_dotenv()
 AWS_URL=os.getenv("AWS_URL")
@@ -107,10 +108,11 @@ data=[]
 for i in all_list:
     line=parse_with_split(str(i))
     data.append(line)
-    print(line)
+    #print(line)                                #debug
 
 df=pd.DataFrame(data)
 
 df['ranking_date']=datetime.datetime.now().strftime('%Y-%m-%d')
+df['ID']=df["ranking_date"].astype(str) + df["rank"].astype(str)
 
 load_rankings_to_AWS(df,'wta_rankings_current')
